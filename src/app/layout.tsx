@@ -16,6 +16,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "FZYVZN",
   description: "VZN over everything.",
+  icons: [
+    { rel: "icon", url: "/favicon.ico" },
+    { rel: "/apple-touch-icon", url: "/apple-icon.png", sizes: "180x180" },
+  ],
 };
 
 export default function RootLayout({
