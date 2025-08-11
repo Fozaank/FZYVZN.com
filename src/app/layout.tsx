@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   description: "VZN over everything.",
   icons: [
     { rel: "icon", url: "/favicon.ico" },
-    { rel: "/apple-touch-icon", url: "/apple-icon.png", sizes: "180x180" },
+    { rel: "/apple-icon", url: "/apple-icon.png", sizes: "180x180" },
   ],
 };
 

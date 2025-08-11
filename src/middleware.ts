@@ -1,21 +1,22 @@
+// src/middleware.ts
 import { withAuth } from "next-auth/middleware";
+
+// Read the "switch" from our environment variables.
+// The "true" is a fallback in case it's not set, keeping the site locked by default.
+const maintenanceMode = process.env.NEXT_PUBLIC_MAINTENANCE_MODE === "true";
 
 export default withAuth({
   callbacks: {
-    // The `authorized` callback determines if a user is allowed to access a page.
-    authorized: ({ token }) => !!token,
+    // If maintenance mode is OFF, always authorize the user (let them in).
+    // If it's ON, then check for a valid session token.
+    authorized: ({ token }) => !maintenanceMode || !!token,
   },
   pages: {
-    // If `authorized` returns false, redirect to this page.
     signIn: "/locked",
   },
 });
 
 export const config = {
-  matcher: [
-    /*
-     * Protect all routes except for the sign-in page and static/API assets.
-     */
-    "/((?!api|_next/static|_next/image|favicon.ico|locked).*)",
-  ],
+  // The matcher remains the same
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|locked).*)"],
 };
